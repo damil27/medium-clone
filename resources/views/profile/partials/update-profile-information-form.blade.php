@@ -17,6 +17,13 @@
         @csrf
         @method('patch')
 
+         <!-- Image -->
+                        <div class="mt-4">
+                            <x-input-label for="image" :value="__('avatar')" />
+                            <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" :value="old('title')"  autofocus  />
+                            <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
+                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+                        </div>
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />

@@ -12,8 +12,10 @@ Route::get('/', [PostController::class, 'index'])->middleware(['auth', 'verified
 Route::get('/post/create', [PostController::class, 'create'])->middleware(['auth', 'verified'])->name('post.create');
 
 Route::middleware(['auth', 'verified'])->group( function() {
-    Route::get('/', [PostController::class, 'index'])->name('post.index');
+    Route::get('/', [PostController::class, 'index'])->name('dashboard');
     Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
+    Route::post('/post',[PostController::class, 'store'])->name('post.store');
+    Route::get('post/@{username}/posts', [PostController::class, 'show'])->name('post.show');
 });
 
 Route::middleware('auth')->group(function () {
@@ -23,3 +25,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+ 

@@ -1,4 +1,17 @@
-                <div class=" flex  block  p-6 border w-full border-default rounded-base shadow-xs mb-4">
+                
+@php
+    $image = $post->image;
+
+    if ($image && Str::startsWith($image, ['http://', 'https://'])) {
+        $imageUrl = asset('images/default-image.jpg');
+    } elseif ($image && Storage::disk('public')->exists($image)) {
+        $imageUrl = Storage::disk('public')->url($image);
+    } else {
+        $imageUrl = asset('images/default-image.jpg');
+    }
+@endphp
+                
+                <div class=" flex  block   border w-full border-default rounded-base shadow-xs mb-4">
                         <div class='p-5 flex-1'>
 
                             <a href="#">
@@ -13,7 +26,10 @@
                                 </x-primary-button>
                                </a>
                         </div>
-                        <a href="#">
-                            <img class="rounded-base w-48 h-48 object-cover rounded-r-lg" src="https://flowbite.com/docs/images/blog/image-1.jpg" alt="" />
+                        <a href="#" class="flex-shrink-0 overflow-hidden rounded-r-lg w-48">
+                           
+                            <img class="w-48 h-full max-h-64 object-cover rounded-r-lg "
+                            src="{{ $imageUrl }}"
+                             alt="{{ $post->title }}" />
                         </a>
                     </div>
