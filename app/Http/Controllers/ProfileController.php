@@ -36,7 +36,7 @@ class ProfileController extends Controller
         }else{
             unset($data['profile_picture']);
         }
-        dd($data);
+        // dd($data);
         $request->user()->fill($data);
 
         if ($request->user()->isDirty('email')) {

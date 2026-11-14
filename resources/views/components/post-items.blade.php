@@ -14,7 +14,8 @@
                 <div class=" flex  block   border w-full border-default rounded-base shadow-xs mb-4">
                         <div class='p-5 flex-1'>
 
-                            <a href="#">
+                            <a href="{{ route('post.show', ['username' => $post->user->username, 'post' => $post]) }}" class="inline-block mb-2 text-sm font-medium text-primary hover:underline">
+                                {{ $post->user->name }}
                                 <h5 class="mt-6 mb-2 text-2xl font-semibold tracking-tight text-heading">{{ $post->title}}</h5>
                             </a>
                             <div class="mb-6 text-body">{{ Str::words($post->content, 20)}}</div>

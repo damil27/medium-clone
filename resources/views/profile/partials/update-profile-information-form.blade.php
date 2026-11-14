@@ -13,13 +13,14 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6 enctype="multipart/form-data" >  
+
+        <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
 
         @if($user->profile_picture)
             <div class="mt-4">
-                <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture" class="w-20 h-20 rounded-full">
+                <img src="{{ $user->imageUrl() }}" alt="Profile Picture" class="w-20 h-20 rounded-full">
             </div>
         @endif
 
